@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces-Italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/assets/fonts/CrimsonPro.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/assets/fonts/CrimsonPro-Italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Romantic rose-gold palette */
+    --background: 0.12 0.025 350;
+    --foreground: 0.97 0.01 60;
+    --card: 0.16 0.03 348;
+    --card-foreground: 0.97 0.01 60;
+    --popover: 0.16 0.03 348;
+    --popover-foreground: 0.97 0.01 60;
+    --primary: 0.82 0.08 60;
+    --primary-foreground: 0.12 0.025 350;
+    --secondary: 0.22 0.04 348;
+    --secondary-foreground: 0.95 0.02 60;
+    --muted: 0.18 0.025 350;
+    --muted-foreground: 0.72 0.04 55;
+    --accent: 0.75 0.12 28;
+    --accent-foreground: 0.12 0.025 350;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.28 0.045 350;
+    --input: 0.28 0.045 350;
+    --ring: 0.72 0.1 42;
+
+    /* Chart and sidebar tokens (kept minimal) */
+    --chart-1: 0.75 0.12 28;
+    --chart-2: 0.82 0.08 60;
+    --chart-3: 0.6 0.1 340;
+    --chart-4: 0.7 0.09 20;
+    --chart-5: 0.55 0.13 350;
+    --sidebar: 0.12 0.025 350;
+    --sidebar-foreground: 0.97 0.01 60;
+    --sidebar-primary: 0.82 0.08 60;
+    --sidebar-primary-foreground: 0.12 0.025 350;
+    --sidebar-accent: 0.18 0.03 348;
+    --sidebar-accent-foreground: 0.95 0.02 60;
+    --sidebar-border: 0.28 0.045 350;
+    --sidebar-ring: 0.72 0.1 42;
+
+    /* Romantic custom tokens */
+    --rose: 0.62 0.18 354;
+    --gold: 0.82 0.1 60;
+    --gold-light: 0.92 0.07 70;
+    --blush: 0.88 0.06 10;
+    --deep-rose: 0.35 0.12 358;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Crimson Pro", serif;
+  }
+}
+
+/* Floating hearts animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(25deg) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(20px); }
+  75% { transform: translateX(-20px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 20px oklch(var(--gold) / 0.4),
+      0 0 40px oklch(var(--rose) / 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 40px oklch(var(--gold) / 0.8),
+      0 0 80px oklch(var(--rose) / 0.4),
+      0 0 120px oklch(var(--gold) / 0.2);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float-up {
+  animation: floatUp var(--duration, 8s) ease-in forwards;
+}
+
+.animate-sway {
+  animation: sway var(--sway-duration, 6s) ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle var(--spark-duration, 3s) ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--gold)) 0%,
+    oklch(var(--gold-light)) 30%,
+    oklch(var(--gold)) 60%,
+    oklch(var(--gold-light)) 80%,
+    oklch(var(--gold)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.delay-300 { animation-delay: 0.3s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1200 { animation-delay: 1.2s; }
+.delay-1500 { animation-delay: 1.5s; }
+.delay-1800 { animation-delay: 1.8s; }
+.delay-2100 { animation-delay: 2.1s; }
+
+.letter-glow {
+  text-shadow:
+    0 0 30px oklch(var(--gold) / 0.6),
+    0 0 60px oklch(var(--rose) / 0.3);
+}
